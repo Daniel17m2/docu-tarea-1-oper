@@ -1,0 +1,64 @@
+\title{Tarea 0}
+\input{Config.tex}
+
+\begin{document}
+\encabezado{1}{5}{10}
+\section{Introducción}
+El presente documento tiene como objetivo informar al usuario como utilizar el programa requerido y mostrar su funcionamiento por medio de las pruebas utilizadas. El trabajo principal del programa es crear n procesos que tomen un archivo con extensión XML cada uno y aislar sus etiquetas del contenido contando cuantas veces se repiten, enviarle mensajes al proceso principal con los datos obtenidos para que este los comparta en un segmento de memoria compartida y sean impresos por otro proceso en pantalla. Este programa por medio de un parámetro -t define si se debe de crea un archivo aparte que contenga todos los datos entre las etiquetas. 
+
+\section{Diagrama}
+	\ \hfill \includegraphics[scale = 0.8]{pictures/Diagrama.pdf} \hfill \ 
+\section{Manual de Usuario}
+\subsection{Requerimientos de Software}
+	\begin{itemize}
+    \item	\textbf{Sistema Operativo:} [ Linux ]
+    \item	\textbf{Arquitectura:} [ 32 bits, 64 bits ]
+    \item	\textbf{Ambiente:} [ gedit, nano ]
+    \end{itemize}
+\subsection{Compilación}
+\begin{itemize}
+    \item[]Para compilar el programa hay que ubicarse donde se encuentra el archivo makefile dentro de la terminal, para ejecutar el siguiente comando:
+\begin{lstlisting}[style= Cstyle]
+	make compile
+\end{lstlisting}
+  	Lo anterior llama al compilador g++ de la siguiente manera: 
+\begin{lstlisting}[style= Cstyle]
+	g++ -g src/*.cpp -o bin/labelCounter.out
+\end{lstlisting}
+    \end{itemize}
+\subsection{Especificación de las funciones del programa}
+\begin{itemize}   
+	\item[] Este programa requiere de archivos con extensión XML, en caso de haber ambigüedad el programa le informará al usuario que inserte una ruta a un archivo XML válida, en caso de no brindar una ruta válida el programa lo informará y procederá a cerrarse.
+    
+	Para correr el programa se puede utilizar el siguiente comando desde la ruta del make:
+\begin{lstlisting}[style= Cstyle]
+	./bin/labelCounter.out [-t] <ruta del archivo XML>
+\end{lstlisting} 
+	Donde -t indica que se requiere crear un archivo de salida con el contenido entre las etiquetas del archivo XML, el archivo creado se guardará en la misma ubicación que el archivo de entrada con el mismo nombre pero sin extensión.
+	
+
+	Alternativamente se puede utilizar el commando:
+\begin{lstlisting}[style= Cstyle]
+	make run
+\end{lstlisting}
+    Lo que llamará al comando:
+\begin{lstlisting}[style= Cstyle]
+	./bin/labelCounter.out data/input.xml
+\end{lstlisting}
+\end{itemize}
+\section{Pruebas}
+    Se edito el siguiente archivo para realizar las pruebas.
+    
+	 \hfill \includegraphics[scale = 0.4]{pictures/input.png} \hfill \ 
+	
+	Al correr el programa se obtuvo el siguiente resultado que era el esperado.
+	
+	 \hfill \includegraphics[scale = 0.4]{pictures/output.png} \hfill \ 
+	 
+	Se genera el siguiente archivo de salida el cual era el esperado también.
+	
+	 \hfill \includegraphics[scale = 0.4]{pictures/file.png} \hfill \ 
+
+\section{Conclusión}
+    Es más eficiente leer los archivos por linea que todo de una sola vez en el buffer, visualizé mejor como se distribuye un archivo xml.
+\end{document}
